@@ -4,84 +4,86 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>
-        Trendlier
-    </title>
+    <title>Trendlier</title>
     <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css">
     <link href="./index.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Chakra+Petch:400,700" rel="stylesheet">
+
 </head>
 
 <body>
-    <nav class="top-navigation" role="navigation">
+    <input type="hidden" id="loggedInUserName" value="">
+    <div class="top-menu hidden">
+        <nav class="top-navigation" role="navigation">
 
-        <div class="content">
-            <ul class="links">
+            <div class="content ">
+                <ul class="links ">
 
-                <li class="logo">Trendlier</li>
-                <li><a href="#new-category">new category</a></li>
-                <li> <a href="#new-category">wishlist</a></li>
-                <li><a href="#list">log out</a></li>
+                    <li class="logo">Trendlier</li>
+                    <li><a href="#new-category">new category</a></li>
+                    <li> <a href="#new-category">wishlist</a></li>
+                    <li><a href="#list">log out</a></li>
 
-            </ul>
-        </div>
+                </ul>
+            </div>
 
-    </nav>
+        </nav>
+    </div>
 
-    <section role="region" class="intro">
-
-        <header role="banner" class="transparent">
-
-
-            <h1>Trendlier</h1>
-
-            <p>Trendlier is for those who like to keep on top of the latest gadgets and trends. </p>
-            <p>Get a list of the top ten hottest items in each category, listed in descending order based on popularity.</p>
-            <p>Purchase your favorites or save them in your wishlist.</p>
-            <button>Sign In</button>
-            <button>Sign Up</button>
-        </header>
-    </section>
-
-    <section class="validation">
+    <div class="back-img">
         <div class="transparent">
-            <form class="login-form " id="login">
-                <fieldset class="login-form-section">
-                    <legend>Sign In</legend>
-                    <label for="login-username">Username:</label>
-                    <input type="text" id="login-username" name="login-username" value="user" required>
-                    <label for="login-password">Password:</label>
-                    <input type="password" id="login-password" name="login-password" value="pass" required>
-                    <button role="button" type="submit" id="login-button">Log In</button>
-                    <a class="signup-anchor" href="#signup">  Sign Up</a>
-                </fieldset>
-            </form>
+            <section role="region" class="intro">
 
-            <form class="signup-form " id="signup">
-                <fieldset>
-                    <legend>Sign Up</legend>
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <label for="match-password">Confirm password:</label>
-                    <input type="password" id="match-password" name="match-password" required>
-                    <button role="button" type="submit" id="signUpButton">Sign Up</button>
-                    <a class="login-anchor" href="#login">Sign In</a>
-                </fieldset>
-            </form>
-        </div>
-    </section>
+                <header role="banner">
 
-    <section role="region" class="search">
-        <div class="transparent">
-            <form action="#" class="js-search-form">
-                <label class="search-label">Please select a category from the drop down menu:
+
+                    <h1>Trendlier</h1>
+
+                    <p>Trendlier is for those who like to keep on top of the latest gadgets and trends. </p>
+                    <p>Get a list of the top ten hottest items in each category, listed in descending order based on popularity.</p>
+                    <p>Purchase your favorites or save them in your wishlist.</p>
+                    <button class="login-button">Sign In</button>
+                    <button class="signup-button">Sign Up</button>
+
+                </header>
+            </section>
+
+            <section class="validation">
+                <form class="login-form hidden" id="login">
+                    <fieldset class="login-form-section">
+                        <legend>Sign In</legend>
+                        <label for="login-username">Username:</label>
+                        <input type="text" id="login-username" name="login-username" value="user" required>
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="login-password" value="pass" required>
+                        <button role="button" type="submit" id="login-button">Log In</button>
+                        <a class="signup-anchor" href="#signup">  Sign Up</a>
+                    </fieldset>
+                </form>
+
+                <form class="signup-form hidden" id="signup">
+                    <fieldset>
+                        <legend>Sign Up</legend>
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="match-password">Confirm password:</label>
+                        <input type="password" id="match-password" name="match-password" required>
+                        <button role="button" type="submit" id="signUpButton">Sign Up</button>
+                        <a class="login-anchor" href="#login">Sign In</a>
+                    </fieldset>
+                </form>
+            </section>
+
+            <section role="region" class="search hidden">
+
+                <form action="#" class="js-search-form">
+                    <label class="search-label">Please select a category from the drop down menu:
                     <select name="state" class="user-input" autofocus>
                         <option>Category</option>
                         <option value="abcat0401000">Digital Cameras</option>
@@ -95,12 +97,14 @@
                         <option value="abcat0101000">TVs</option>
                     </select>
                 </label>
-            </form>
+                </form>
+
+            </section>
         </div>
-    </section>
+    </div>
 
     <main class="">
-        <section role="region" class="results">
+        <section role="region" class="results hidden">
             <h2>Trending Items</h2>
             <div class="flex">
 
@@ -152,7 +156,7 @@
             </div>
         </section>
 
-        <section role="region" class="single-item">
+        <section role="region" class="single-item hidden">
             <h2>Item Details </h2>
 
             <article class="single">
@@ -179,7 +183,7 @@
             </article>
         </section>
 
-        <section role="region" class="wish-list">
+        <section role="region" class="wish-list hidden">
             <h2>Wish List</h2>
             <article>
                 <div class="picture">
@@ -240,7 +244,7 @@
             </article>
         </section>
 
-        <section role="region" class="edit-item">
+        <section role="region" class="edit-item hidden">
             <h2>Edit Note </h2>
 
             <article class="single">
@@ -257,8 +261,8 @@
                 </div>
                 <form action="" class="add-note">
                     <fieldset>
-                        <label for="notes"><span class="tag">Note:</span> </label>
-                        <textarea id="notes" rows="15" cols="40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        <label for="edit-notes"><span class="tag">Note:</span> </label>
+                        <textarea id="edit-notes" rows="15" cols="40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                                 aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
                                 id est laborum.</textarea>
                     </fieldset>
@@ -270,7 +274,8 @@
         </section>
 
     </main>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="client.js"></script>
 </body>
 
 </html>
