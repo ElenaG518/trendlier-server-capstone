@@ -1,0 +1,42 @@
+{
+    "name": "trendlier",
+    "version": "1.0.0",
+    "description": "Trendlier shows the top 10 trending items.   Client can add items into a wish list, or purchase them by following a link.  Client can also add notes to each item in wishlist.",
+    "main": "server.js",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "dotenv": "^6.1.0",
+        "express": "^4.16.4",
+        "jsonwebtoken": "^8.3.0",
+        "mongodb": "^3.1.9",
+        "mongoose": "^5.3.11",
+        "morgan": "^1.9.1",
+        "passport": "^0.4.0",
+        "passport-http": "^0.3.0",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0",
+        "unirest": "^0.5.1"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.0",
+        "faker": "^4.1.0",
+        "mocha": "^5.2.0"
+    },
+    "scripts": {
+        "test": "mocha",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ElenaG518/trendlier-server-capstone.git"
+    },
+    "author": "Elena Granados",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ElenaG518/trendlier-server-capstone/issues"
+    },
+    "homepage": "https://github.com/ElenaG518/trendlier-server-capstone#readme"
+}

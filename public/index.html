@@ -9,81 +9,79 @@
     </title>
     <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css">
     <link href="./index.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Audiowide|Chakra+Petch|Kumar+One+Outline" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700" rel="stylesheet">
 </head>
 
-<section role="region" class="intro">
-    <div class="transparent">
-        <header role="banner">
+<body>
+    <nav class="top-navigation" role="navigation">
+
+        <div class="content">
+            <ul class="links">
+
+                <li class="logo">Trendlier</li>
+                <li><a href="#new-category">new category</a></li>
+                <li> <a href="#new-category">wishlist</a></li>
+                <li><a href="#list">log out</a></li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+    <section role="region" class="intro">
+
+        <header role="banner" class="transparent">
+
+
             <h1>Trendlier</h1>
-            <nav class="hidden header-nav" role="navigation">
-                <ul>
-                    <li> <a href="#new-category">New Category</a></li>
-                    <li><a href="#list">Wish List</a></li>
-                    <li><a href="#logout">Log Out</a></li>
-                </ul>
-            </nav>
+
             <p>Trendlier is for those who like to keep on top of the latest gadgets and trends. </p>
             <p>Get a list of the top ten hottest items in each category, listed in descending order based on popularity.</p>
             <p>Purchase your favorites or save them in your wishlist.</p>
+            <button>Sign In</button>
+            <button>Sign Up</button>
         </header>
+    </section>
 
-        <form class="login-form" id="login">
-            <fieldset class="login-form-section">
-                <legend>Sign In</legend>
-                <label for="login-username">Username:
-                <input type="text" id="login-username" name="login-username" value="user" required>
-                </label>
-                <label for="login-password">Password:
-                <input type="password" id="login-password" name="login-password" value="pass" required>
-                </label>
-                <button role="button" type="submit" id="login-button">Log In</button>
+    <section class="validation">
+        <div class="transparent">
+            <form class="login-form " id="login">
+                <fieldset class="login-form-section">
+                    <legend>Sign In</legend>
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" name="login-username" value="user" required>
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" value="pass" required>
+                    <button role="button" type="submit" id="login-button">Log In</button>
+                    <a class="signup-anchor" href="#signup">  Sign Up</a>
+                </fieldset>
+            </form>
 
-            </fieldset>
-        </form>
-        <a class="signup-anchor" href="#signup">Sign Up</a>
-
-        <form class="signup-form hide" id="signup">
-            <fieldset>
-                <legend>Sign Up</legend>
-                <label for="firstName">First Name:
-                <input type="text" id="firstName" name="firstName" required>
-                </label>
-                <label for="lastName">Last Name:
-                <input type="text" id="lastName" name="lastName" required>
-                </label>
-                <label for="username">Username:
-                <input type="text" id="username" name="username" required>
-                </label>
-                <label for="password">Password:
-                <input type="password" id="password" name="password" required>
-                </label>
-                <label for="password">Confirm password:
-                <input type="password" id="password-match" name="password-match" required>
-                </label>
-                <button role="button" type="submit" id="signUpButton">Sign Up</button>
-                <a class="login-anchor" href="#login">Sign In</a>
-            </fieldset>
-        </form>
-    </div>
-</section>
-
-
-<body>
-
+            <form class="signup-form " id="signup">
+                <fieldset>
+                    <legend>Sign Up</legend>
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <label for="match-password">Confirm password:</label>
+                    <input type="password" id="match-password" name="match-password" required>
+                    <button role="button" type="submit" id="signUpButton">Sign Up</button>
+                    <a class="login-anchor" href="#login">Sign In</a>
+                </fieldset>
+            </form>
+        </div>
+    </section>
 
     <section role="region" class="search">
         <div class="transparent">
-            <h1>Trendlier</h1>
-            <nav role="navigation">
-                <ul>
-
-                    <li><a href="#list">Wish List</a></li>
-                    <li><a href="#logout">Log Out</a></li>
-                </ul>
-            </nav>
             <form action="#" class="js-search-form">
-                <label>Please select a category from the drop down menu:
+                <label class="search-label">Please select a category from the drop down menu:
                     <select name="state" class="user-input" autofocus>
                         <option>Category</option>
                         <option value="abcat0401000">Digital Cameras</option>
@@ -101,112 +99,173 @@
         </div>
     </section>
 
-    <main>
-
-        <h1>Trendlier</h1>
-        <nav role="navigation">
-            <ul>
-                <li><a href="#new-category">New Category</a></li>
-                <li><a href="#list">Wish List</a></li>
-                <li class="right"><a href="#logout">Log Out</a></li>
-            </ul>
-        </nav>
+    <main class="">
         <section role="region" class="results">
             <h2>Trending Items</h2>
-            <article>
-                <div class="item-description">
+            <div class="flex">
+
+                <article>
+                    <div class="picture">
+                        <img src="https://img.bbystatic.com/BestBuy_US/images/products/5715/5715104_sa.jpg" alt="Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black" />
+                        <span>1</span>
+                    </div>
                     <h3>Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black</h3>
-                    <p>Regular Price: $799.99</p>
-                    <p>Current Price: $699.99</p>
-                </div>
-                <div class="picture">
-                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5715/5715104_sa.jpg" alt="Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black" />
-                    <span>1</span>
-                </div>
-                <a href="https://api.bestbuy.com/click/-/5715104/pdp" target="_blank">more info</a>
-            </article>
+                    <div class="item-description">
+                        <p><span class="tag">Regular Price:  </span>span> $799.99</p>
+                        <p><span class="tag">Current Price:  </span> $699.99</p>
+                        <p><span class="tag">Average Rating:  </span>4.1</p>
+                        <p><span class="tag">Number of Reviews:   </span>231</p>
+                    </div>
+                    <a href="https://api.bestbuy.com/click/-/5715104/pdp" target="_blank">more info</a>
+                </article>
 
-            <article>
-                <div class="item-description">
-                    <h3>Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black</h3>
-                    <p>Regular Price: $849.99</p>
-                    <p>Current Price: $599.99</p>
-                </div>
-                <div class="picture">
-                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/6296/6296212_sa.jpg" alt="Nikon - D3500 DSLR Camera with AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR and AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED Lenses" />
-                    <span>2</span>
-                </div>
-                <a href="https://api.bestbuy.com/click/-/6296212/pdp" target="_blank">more info</a>
-            </article>
+                <article>
+                    <div class="picture">
+                        <img src="https://img.bbystatic.com/BestBuy_US/images/products/6296/6296212_sa.jpg" alt="Nikon - D3500 DSLR Camera with AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR and AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED Lenses" />
+                        <span>2</span>
+                    </div>
+                    <div class="item-description">
+                        <h3>Nikon - D3500 DSLR Camera with AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR and AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED Lenses</h3>
+                        <p><span class="tag">Regular Price:  </span> $849.99</p>
+                        <p><span class="tag">Current Price:  </span> $599.99</p>
+                        <p><span class="tag">Average Rating:  </span>4.5</p>
+                        <p><span class="tag">Number of Reviews:   </span>31</p>
+                    </div>
+                    <a href="https://api.bestbuy.com/click/-/6296212/pdp" target="_blank">more info</a>
+                </article>
 
-            <article>
-                <div class="item-description">
+                <article>
+                    <div class="picture">
+                        <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+                        <span>3</span>
+                    </div>
+                    <div class="item-description">
+                        <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                        <p><span class="tag">Regular Price:  </span>$749.99</p>
+                        <p><span class="tag">Current Price:  </span> $499.99</p>
+                        <p><span class="tag">Average Rating:  </span>4.7</p>
+                        <p><span class="tag">Number of Reviews:   </span>451</p>
+                    </div>
+                    <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">more info</a>
+                </article>
 
-                    <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
-                    <p>Regular Price: $749.99</p>
-                    <p>Current Price: $499.99</p>
-                </div>
-                <div class="picture">
-                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
-                    <span>3</span>
-                </div>
-                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">more info</a>
-            </article>
+            </div>
         </section>
 
         <section role="region" class="single-item">
             <h2>Item Details </h2>
-            <article>
-                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
-                <div class="details">
-                    <p>Regular Price: $749.99</p>
-                    <p>Current Price: $499.99</p>
-                    <p>Description: 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
 
-                </div>
-                <div>
+            <article class="single">
+                <div class="picture">
                     <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
-
                 </div>
-                <form class="note" action="">
+                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                <div class="single-description">
+                    <p><span class="tag">Regular Price:  </span>$749.99</p>
+                    <p><span class="tag">Current Price:  </span> $499.99</p>
+                    <p><span class="tag">Average Rating:  </span>4.1</p>
+                    <p><span class="tag">Number of Reviews:   </span>231</p>
+                    <p><span class="tag">Description:  </span> 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
+                </div>
+                <form action="" class="add-note">
                     <fieldset>
-                        <label for="note">Note: </label>
-                        <textarea id="notes" rows="21" cols="45"></textarea>
-
+                        <label for="notes"><span class="tag">Note:</span> </label>
+                        <textarea id="notes" rows="15" cols="40"></textarea>
                     </fieldset>
-
                 </form>
-
                 <a href="#" target="_blank">add to wish list</a>
                 <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
                 <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">back to list</a>
-
-
             </article>
         </section>
 
         <section role="region" class="wish-list">
             <h2>Wish List</h2>
             <article>
-                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
-                <div class="details">
-                    <p>Regular Price: $749.99</p>
-                    <p>Current Price: $499.99</p>
-                    <p>Description: 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
-                    <p>Note: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div>
+                <div class="picture">
                     <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
-
                 </div>
-
-
+                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                <div class="item-description">
+                    <p><span class="tag">Regular Price:  </span>$749.99</p>
+                    <p><span class="tag">Current Price:  </span> $499.99</p>
+                    <p><span class="tag">Average Rating:  </span>4.1</p>
+                    <p><span class="tag">Number of Reviews:   </span>231</p>
+                    <p><span class="tag">Description:  </span> 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
+                    <p class="note"><span class="tag">Note:  </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                        id est laborum.</p>
+                </div>
                 <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
-                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">edit note</a>
+                <a href="#" target="_blank">edit note</a>
+            </article>
+
+            <article>
+                <h3>Nikon - D3500 DSLR Camera with AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR and AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED Lenses</h3>
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+                </div>
+                <div class="item-description">
+                    <p><span class="tag">Regular Price:  </span> $849.99</p>
+                    <p><span class="tag">Current Price:  </span> $599.99</p>
+                    <p><span class="tag">Average Rating:  </span>4.1</p>
+                    <p><span class="tag">Number of Reviews:   </span>231</p>
+                    <p><span class="tag">Description:  </span> 24.8-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps11 focus points1080p video up to 60 fpsBuilt-in Bluetooth and Wi-FiNikon SnapBridge</p>
+                    <p class="note"><span class="tag">Note:  </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                        id est laborum.</p>
+                </div>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
+                <a href="#" target="_blank">edit note</a>
+            </article>
+
+            <article>
+                <h3>Sony - 1000XM2 Premium Wireless Noise Cancelling Headphones - Black</h3>
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/6029/6029014_ra.jpg" alt="Sony - 1000XM2 Premium Wireless Noise Cancelling Headphones - Black" />
+                </div>
+                <div class="item-description">
+                    <p><span class="tag">Regular Price:  </span> $349.99</p>
+                    <p><span class="tag">Current Price:  </span> $349.99</p>
+                    <p><span class="tag">Average Rating:  </span>4.1</p>
+                    <p><span class="tag">Number of Reviews:   </span>231</p>
+                    <p><span class="tag">Description:  </span> Hi-Res Audio; wireless range up to 33'; 40mm drivers; neodymium magnets; single-sided cord; volume control; dynamic technology; include carrying pouch; microphone; Bluetooth 4.1 interface; 3.5mm
+                        connector; stereo output mode; Digital Sound Enhancement Engine HX (DSEE HX) effect; S-Master HX&#8482;; rechargeable battery (runs up to 38 hours)</p>
+                    <p class="note"><span class="tag">Note:  </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                        id est laborum.</p>
+                </div>
+                <a href="https://api.bestbuy.com/click/-/6029014/pdp" target="_blank">purchase</a>
+                <a href="#" target="_blank">edit note</a>
+            </article>
+        </section>
+
+        <section role="region" class="edit-item">
+            <h2>Edit Note </h2>
+
+            <article class="single">
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+                </div>
+                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                <div class="single-description">
+                    <p><span class="tag">Regular Price:  </span>$749.99</p>
+                    <p><span class="tag">Current Price:  </span> $499.99</p>
+                    <p><span class="tag">Average Rating:  </span>4.1</p>
+                    <p><span class="tag">Number of Reviews:   </span>231</p>
+                    <p><span class="tag">Description:  </span> 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
+                </div>
+                <form action="" class="add-note">
+                    <fieldset>
+                        <label for="notes"><span class="tag">Note:</span> </label>
+                        <textarea id="notes" rows="15" cols="40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                                id est laborum.</textarea>
+                    </fieldset>
+                </form>
+                <a href="#" target="_blank">add to wish list</a>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
                 <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">back to list</a>
-
-
             </article>
         </section>
 
