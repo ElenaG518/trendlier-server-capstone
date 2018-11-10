@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        Trendlier
+    </title>
+    <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css">
+    <link href="./index.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Chakra+Petch|Kumar+One+Outline" rel="stylesheet">
+</head>
+
+<section role="region" class="intro">
+    <div class="transparent">
+        <header role="banner">
+            <h1>Trendlier</h1>
+            <nav class="hidden header-nav" role="navigation">
+                <ul>
+                    <li> <a href="#new-category">New Category</a></li>
+                    <li><a href="#list">Wish List</a></li>
+                    <li><a href="#logout">Log Out</a></li>
+                </ul>
+            </nav>
+            <p>Trendlier is for those who like to keep on top of the latest gadgets and trends. </p>
+            <p>Get a list of the top ten hottest items in each category, listed in descending order based on popularity.</p>
+            <p>Purchase your favorites or save them in your wishlist.</p>
+        </header>
+
+        <form class="login-form" id="login">
+            <fieldset class="login-form-section">
+                <legend>Sign In</legend>
+                <label for="login-username">Username:
+                <input type="text" id="login-username" name="login-username" value="user" required>
+                </label>
+                <label for="login-password">Password:
+                <input type="password" id="login-password" name="login-password" value="pass" required>
+                </label>
+                <button role="button" type="submit" id="login-button">Log In</button>
+
+            </fieldset>
+        </form>
+        <a class="signup-anchor" href="#signup">Sign Up</a>
+
+        <form class="signup-form hide" id="signup">
+            <fieldset>
+                <legend>Sign Up</legend>
+                <label for="firstName">First Name:
+                <input type="text" id="firstName" name="firstName" required>
+                </label>
+                <label for="lastName">Last Name:
+                <input type="text" id="lastName" name="lastName" required>
+                </label>
+                <label for="username">Username:
+                <input type="text" id="username" name="username" required>
+                </label>
+                <label for="password">Password:
+                <input type="password" id="password" name="password" required>
+                </label>
+                <label for="password">Confirm password:
+                <input type="password" id="password-match" name="password-match" required>
+                </label>
+                <button role="button" type="submit" id="signUpButton">Sign Up</button>
+                <a class="login-anchor" href="#login">Sign In</a>
+            </fieldset>
+        </form>
+    </div>
+</section>
+
+
+<body>
+
+
+    <section role="region" class="search">
+        <div class="transparent">
+            <h1>Trendlier</h1>
+            <nav role="navigation">
+                <ul>
+
+                    <li><a href="#list">Wish List</a></li>
+                    <li><a href="#logout">Log Out</a></li>
+                </ul>
+            </nav>
+            <form action="#" class="js-search-form">
+                <label>Please select a category from the drop down menu:
+                    <select name="state" class="user-input" autofocus>
+                        <option>Category</option>
+                        <option value="abcat0401000">Digital Cameras</option>
+                        <option value="pcmcat242800050021">Health, Fitness & Beauty</option>
+                        <option value="abcat0204000">Headphones</option>
+                        <option value="pcmcat241600050001">Home Audio</option>
+                        <option value="pcmcat254000050002">Home Automation & Security</option>
+                        <option value="pcmcat209000050006">iPad, Tablets & E-Readers</option>
+                        <option value="abcat0502000">Laptops</option>
+                        <option value="pcmcat310200050004">Portable & Wireless Speakers</option>
+                        <option value="abcat0101000">TVs</option>
+                    </select>
+                </label>
+            </form>
+        </div>
+    </section>
+
+    <main>
+
+        <h1>Trendlier</h1>
+        <nav role="navigation">
+            <ul>
+                <li><a href="#new-category">New Category</a></li>
+                <li><a href="#list">Wish List</a></li>
+                <li class="right"><a href="#logout">Log Out</a></li>
+            </ul>
+        </nav>
+        <section role="region" class="results">
+            <h2>Trending Items</h2>
+            <article>
+                <div class="item-description">
+                    <h3>Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black</h3>
+                    <p>Regular Price: $799.99</p>
+                    <p>Current Price: $699.99</p>
+                </div>
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5715/5715104_sa.jpg" alt="Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black" />
+                    <span>1</span>
+                </div>
+                <a href="https://api.bestbuy.com/click/-/5715104/pdp" target="_blank">more info</a>
+            </article>
+
+            <article>
+                <div class="item-description">
+                    <h3>Nikon - D5600 DSLR Camera with 18-55mm and 70-300mm Lenses - Black</h3>
+                    <p>Regular Price: $849.99</p>
+                    <p>Current Price: $599.99</p>
+                </div>
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/6296/6296212_sa.jpg" alt="Nikon - D3500 DSLR Camera with AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR and AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED Lenses" />
+                    <span>2</span>
+                </div>
+                <a href="https://api.bestbuy.com/click/-/6296212/pdp" target="_blank">more info</a>
+            </article>
+
+            <article>
+                <div class="item-description">
+
+                    <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                    <p>Regular Price: $749.99</p>
+                    <p>Current Price: $499.99</p>
+                </div>
+                <div class="picture">
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+                    <span>3</span>
+                </div>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">more info</a>
+            </article>
+        </section>
+
+        <section role="region" class="single-item">
+            <h2>Item Details </h2>
+            <article>
+                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                <div class="details">
+                    <p>Regular Price: $749.99</p>
+                    <p>Current Price: $499.99</p>
+                    <p>Description: 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
+
+                </div>
+                <div>
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+
+                </div>
+                <form class="note" action="">
+                    <fieldset>
+                        <label for="note">Note: </label>
+                        <textarea id="notes" rows="21" cols="45"></textarea>
+
+                    </fieldset>
+
+                </form>
+
+                <a href="#" target="_blank">add to wish list</a>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">back to list</a>
+
+
+            </article>
+        </section>
+
+        <section role="region" class="wish-list">
+            <h2>Wish List</h2>
+            <article>
+                <h3>Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black</h3>
+                <div class="details">
+                    <p>Regular Price: $749.99</p>
+                    <p>Current Price: $499.99</p>
+                    <p>Description: 24.2-megapixel DX-format CMOS sensorISO 100 - 25,600Shooting speeds up to 5 fps39 focus points (9 cross-type)1080p video up to 60 fpsBuilt-in Bluetooth, NFC and Wi-FiSnapBridge</p>
+                    <p>Note: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div>
+                    <img src="https://img.bbystatic.com/BestBuy_US/images/products/5091/5091315_sa.jpg" alt="Canon - EOS Rebel T6 DSLR Camera with EF-S 18-55mm IS II and EF 75-300mm III lens - Black" />
+
+                </div>
+
+
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">purchase</a>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">edit note</a>
+                <a href="https://api.bestbuy.com/click/-/5091315/pdp" target="_blank">back to list</a>
+
+
+            </article>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
