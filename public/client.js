@@ -160,3 +160,60 @@ $('.login-form').submit(function(event) {
     };
 });
 
+$('.category-name').on('change', event => {
+    event.preventDefault();
+    console.log("js-search-form ran");
+    // capture values for category
+    const category = $(event.currentTarget).val();
+    // const category = $('.category-name').val();
+    // const username = $('#loggedInUserName').val();
+    console.log(category);
+    
+    $.ajax({
+        type: 'GET',
+        url: `/bestbuy/${category}`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    //if call is successfull
+    .done(function(result) {
+        console.log(result);
+        displayProducts(result);
+    })
+    // if the call is failing
+    .fail(function(jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+        
+    });
+})
+
+function displayProducts(products) {
+    console.log("displayProducts");
+    $('.search').addClass('hidden');
+    $('.results').removeClass('hidden');
+    const long = products.results.length;
+    const productString = [];
+    for (let x=0; x<long; x++) {
+      console.log(products.results[x].names.title);
+      productString.push(
+          `<article>
+          <div class="picture">
+              <img src="${products.results[x].images.standard}" alt="${products.results[x].names.title}" />
+              <span>${products.results[x].rank}</span>
+          </div>
+          <h3>${products.results[x].names.title}</h3>
+          <div class="item-description">
+              <p><span class="tag">Regular Price:  </span>${products.results[x].prices.regular}</p>
+              <p><span class="tag">Current Price:  </span> ${products.results[x].prices.current}</p>
+              <p><span class="tag">Average Rating:  </span>${products.results[x].customerReviews.averageScore}</p>
+              <p><span class="tag">Number of Reviews:   </span>${products.results[x].customerReviews.count}</p>
+          </div>
+          <a href="#" target="_blank">more info</a>
+      </article>`
+      )
+
+    }
+}
+

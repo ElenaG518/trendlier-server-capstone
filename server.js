@@ -55,10 +55,10 @@ mongoose.Promise = global.Promise;
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl, port = PORT) {
+function runServer(databaseUrl , port = PORT) {
 
     return new Promise((resolve, reject) => {
-        mongoose.connect(databaseUrl, err => {
+    mongoose.connect(databaseUrl, {useNewUrlParser: true }, err => {
             if (err) {
                 return reject(err);
             }
@@ -116,6 +116,7 @@ let getFromBestBuy = function (product) {
         res.on('data', function (chunk) {
             body += chunk;
             let jsonFormattedResults = JSON.parse(body);
+            console.log("jsonFormated", jsonFormattedResults);
             emitter.emit('end', jsonFormattedResults);
         });
 
@@ -129,13 +130,16 @@ let getFromBestBuy = function (product) {
 
 // local API endpoints
 // to test endpoint use: http://localhost:8080/bestbuy/pcmcat209400050001
+
 app.get('/bestbuy/:categoryId', function (req, res) {
-
-
     //external api function call and response
+    // params received from client.js js-search-form and sent to getFromBestBuy,
+    
     let searchReq = getFromBestBuy(req.params.categoryId);
+    
 
     //get the data from the first api call
+    // then the results are sent back to js-search-form in client.js
     searchReq.on('end', function (item) {
         res.json(item);
     });
