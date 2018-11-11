@@ -1,18 +1,23 @@
 'use strict';
 
+// USER VALIDATION AND REGISTRATION
+
+// Anchors and buttons for login and signup
+
 $('.signup-button').click(event => {
     // event.preventDefault();
-    console.log("got to sign up");
+    console.log("go to sign up");
     signupForm();
 });
 
 $('.signup-anchor').click(event => {
     event.preventDefault();
-    console.log("got to sign up");
+    console.log("go to sign up");
     signupForm();
 });
 
 function signupForm() { 
+    console.log("signupForm");
     $('.intro').hide();
     $('.signup-form').removeClass('hidden');
     if(!($('.login-form').hasClass('hidden'))) {
@@ -22,26 +27,26 @@ function signupForm() {
 
 $('.login-button').click(event => {
     // event.preventDefault();
-    console.log("got to login");
-    $('.intro').hide();
-    $('.login-form').removeClass('hidden');
-    if(!($('.signup-form').hasClass('hidden'))) {
-        $('.signup-form').addClass('hidden');
-    }
+    console.log("go to login");
+    loginForm();
 });
 
 $('.login-anchor').click(event => {
-    console.log("got to login");
+    event.preventDefault();
+    console.log("go to login");
+    loginForm();
+});
+
+function loginForm() {
+    console.log("loginForm");
     $('.intro').hide();
     $('.login-form').removeClass('hidden');
     if(!($('.signup-form').hasClass('hidden'))) {
         $('.signup-form').addClass('hidden');
     }
-});
+};
 
-
-
-// API calls to users router
+// API CALLS TO USER ROUTER
 
 // sign up API call to create user
 $('.signup-form').submit(function(event) {
@@ -152,6 +157,6 @@ $('.login-form').submit(function(event) {
                 const message = jqXHR.responseJSON.message;
                 alert(message);
             });
-
     };
 });
+
