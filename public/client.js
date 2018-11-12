@@ -160,6 +160,8 @@ $('.login-form').submit(function(event) {
     };
 });
 
+// CALL EXTERNAL API
+
 $('.category-name').on('change', event => {
     event.preventDefault();
     console.log("js-search-form ran");
@@ -189,26 +191,34 @@ $('.category-name').on('change', event => {
     });
 })
 
+// DISPLAY RESULTS OF SUCCESSFUL EXTERNAL API CALL
+
+let productList = [];
+
+
 function displayProducts(products) {
     console.log("displayProducts");
     $('.back-img').addClass('hidden');
-    const long = products.results.length;
+    productList = products.results;
+
+    const long = productList.length;
+
     const productString = [];
     for (let x=0; x<long; x++) {
       productString.push(
           `<article>
           <div class="picture">
-              <img src="${products.results[x].images.standard}" alt="${products.results[x].names.title}" />
-              <span>${products.results[x].rank}</span>
+              <img src="${productList[x].images.standard}" alt="${productList[x].names.title}" />
+              <span>${productsList[x].rank}</span>
           </div>
           <h3>${products.results[x].names.title}</h3>
           <div class="item-description">
-              <p><span class="tag">Regular Price:  </span>${products.results[x].prices.regular}</p>
-              <p><span class="tag">Current Price:  </span> ${products.results[x].prices.current}</p>
-              <p><span class="tag">Average Rating:  </span>${products.results[x].customerReviews.averageScore}</p>
-              <p><span class="tag">Number of Reviews:   </span>${products.results[x].customerReviews.count}</p>
+              <p><span class="tag">Regular Price:  </span>${productList[x].prices.regular}</p>
+              <p><span class="tag">Current Price:  </span> ${productList[x].prices.current}</p>
+              <p><span class="tag">Average Rating:  </span>${productList[x].customerReviews.averageScore}</p>
+              <p><span class="tag">Number of Reviews:   </span>${productList[x].customerReviews.count}</p>
           </div>
-          <a href="#" target="_blank">more info</a>
+          <button class="item" index="${x}">more details</button>
       </article>`
       )
     };
@@ -217,3 +227,20 @@ function displayProducts(products) {
     $('.results').removeClass('hidden');
 }
 
+// DISPLAY SINGLE ITEM FROM RESULTS ABOVE
+
+
+// get index for item clicked
+$('.flex').on('click', '.item', event => {
+    console.log("item clicked");
+    const itemIndex = $(event.currentTarget).attr('index');
+    console.log("itemIndex", itemIndex);
+    displaySingleItem(itemIndex);
+});
+
+function displaySingleItem(index) {
+    console.log("displaySingleItem");
+    const singleItem = products[index];
+    console.log("singleItem", singleItem);
+
+}

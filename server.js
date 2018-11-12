@@ -116,7 +116,7 @@ let getFromBestBuy = function (product) {
         res.on('data', function (chunk) {
             body += chunk;
             let jsonFormattedResults = JSON.parse(body);
-            console.log("jsonFormated", jsonFormattedResults);
+            // console.log("jsonFormated", jsonFormattedResults);
             emitter.emit('end', jsonFormattedResults);
         });
 
