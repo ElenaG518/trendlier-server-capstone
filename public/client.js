@@ -200,18 +200,20 @@ function displayProducts(products) {
     console.log("displayProducts");
     $('.back-img').addClass('hidden');
     productList = products.results;
+    console.log("productList", productList);
 
     const long = productList.length;
 
     const productString = [];
     for (let x=0; x<long; x++) {
+        
       productString.push(
           `<article>
           <div class="picture">
               <img src="${productList[x].images.standard}" alt="${productList[x].names.title}" />
-              <span>${productsList[x].rank}</span>
+              <span>${productList[x].rank}</span>
           </div>
-          <h3>${products.results[x].names.title}</h3>
+          <h3>${productList[x].names.title}</h3>
           <div class="item-description">
               <p><span class="tag">Regular Price:  </span>${productList[x].prices.regular}</p>
               <p><span class="tag">Current Price:  </span> ${productList[x].prices.current}</p>
@@ -240,7 +242,35 @@ $('.flex').on('click', '.item', event => {
 
 function displaySingleItem(index) {
     console.log("displaySingleItem");
-    const singleItem = products[index];
+    $('.results').addClass('hidden');
+    const singleItem = productList[index];
     console.log("singleItem", singleItem);
 
+    const itemString= 
+        `<h2>Item Details </h2>  
+        <article class="single">
+        <div class="picture">
+        <img src="${singleItem.images.standard}" alt="${singleItem.names.title}" />
+        </div>
+        <h3>${singleItem.names.title}</h3>
+        <div class="single-description">
+            <p><span class="tag">Regular Price:  </span>${singleItem.prices.regular}</p>
+            <p><span class="tag">Current Price:  </span> ${singleItem.prices.current}</p>
+            <p><span class="tag">Average Rating:  </span>${singleItem.customerReviews.averageScore}</p>
+            <p><span class="tag">Number of Reviews:   </span>${singleItem.customerReviews.count}</p>
+            <p><span class="tag">Description:  </span>${singleItem.descriptions.short} </p>
+        </div>
+        <form action="" class="add-note">
+            <fieldset>
+                <label for="notes"><span class="tag">Note:</span> </label>
+                <textarea id="notes" rows="15" cols="40"></textarea>
+            </fieldset>
+        </form>
+        <a href="#" target="_blank">add to wish list</a>
+        <a href="${singleItem.links.web}" target="_blank">purchase</a>
+        <a href="" target="_blank">back to list</a>
+    </article>`
+    ;
+    
+    $('.single-item').removeClass('hidden').html(itemString);
 }
