@@ -191,12 +191,10 @@ $('.category-name').on('change', event => {
 
 function displayProducts(products) {
     console.log("displayProducts");
-    $('.search').addClass('hidden');
-    $('.results').removeClass('hidden');
+    $('.back-img').addClass('hidden');
     const long = products.results.length;
     const productString = [];
     for (let x=0; x<long; x++) {
-      console.log(products.results[x].names.title);
       productString.push(
           `<article>
           <div class="picture">
@@ -213,7 +211,9 @@ function displayProducts(products) {
           <a href="#" target="_blank">more info</a>
       </article>`
       )
-
-    }
+    };
+    console.log("productString", productString);
+    $('.flex').html(productString);
+    $('.results').removeClass('hidden');
 }
 
