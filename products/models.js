@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 const productSchema = mongoose.Schema({
     image: { type: String, required: true },
     name: { type: String, required: true },
+    purchaseUrl: { type: String, required: true },
     regularPrice: { type: String, required: true },
     currentPrice: { type: String, required: true },
     rating: { type: String, required: true },
@@ -24,6 +25,7 @@ productSchema.methods.serialize = function() {
         id: this._id,
         image: this.image,
         name: this.name,
+        purchaseUrl: this.purchaseUrl,
         regularPrice: this.regularPrice,
         currentPrice: this.currentPrice,
         rating: this.rating,
@@ -31,7 +33,7 @@ productSchema.methods.serialize = function() {
         description: this.description,
         notes: this.notes,
         created: this.created,
-        // loggedInUserName: this.loggedInUserName
+        loggedInUserName: this.loggedInUserName
     }
 }
 

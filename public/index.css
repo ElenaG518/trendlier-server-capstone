@@ -295,42 +295,45 @@
         color: lightgray;
         z-index: 1;
     }
-    
-    article a {
-        /* flex: 1 1 50%; */
+    /* article a {
+        flex: 1 1 50%;
         padding: 10px;
         background: #fff;
         color: darkolivegreen;
         border: 1px solid lightgray;
         margin: 5px auto 0;
         text-decoration: none;
-    }
-    
-    article a:hover {
+    } */
+    /* article a:hover {
         background-color: #fff;
         color: rgb(0, 0, 0);
         cursor: pointer;
         text-decoration: none;
         box-shadow: 2px 2px 2px #3c3c3c;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-    }
+    } */
     
     .item,
     .wishlist-button,
-    .results-list-button {
+    .results-list-button,
+    .edit-button,
+    article a {
         font-family: 'Chakra Petch', sans-serif;
         font-size: 80%;
         width: 100%;
-        padding: 10px;
+        padding: 10px 0;
         background: #fff;
         color: darkolivegreen;
         border: 1px solid lightgray;
         margin: 10px auto 0;
+        line-height: 1.4em
     }
     
     .item:hover,
     .wishlist-button:hover,
-    .results-list-button:hover {
+    .results-list-button:hover,
+    .edit-button:hover,
+    article a:hover {
         background-color: #fff;
         color: rgb(0, 0, 0);
         cursor: pointer;

@@ -11,7 +11,7 @@ router.get('/:username', (req, res) => {
 
     console.log(req.params.username);
     Product
-        .find({ loggedInUserName: req.params.loggedInUserName })
+        .find({ loggedInUserName: req.params.username })
         .sort({ created: 1 })
         // if successful, send back journeys
         .then(products => {
@@ -57,7 +57,7 @@ router.get('/edit/:id', (req, res) => {
 
 // response for API call to create a product with information provided by user
 router.post('/create', jsonParser, (req, res) => {
-    console.log(req.body.image, req.body.name, req.body.regularPrice, req.body.currentPrice, req.body.rating, req.body.reviewsCount, req.body.description, req.body.notes, req.body.loggedInUserName);
+        console.log("this", req.body.image, req.body.name, req.body.purchaseUrl, req.body.regularPrice, req.body.currentPrice, req.body.rating, req.body.reviewsCount, req.body.description, req.body.notes, req.body.loggedInUserName);
     const requiredFields = ['image', 'name', 'regularPrice', 'currentPrice', 'rating', 'reviewsCount', 'description', 'notes', 'loggedInUserName'];
     // ensure we have values for all required fields, otherwise send an error
     for (let i = 0; i < requiredFields.length; i++) {
@@ -73,6 +73,7 @@ router.post('/create', jsonParser, (req, res) => {
         .create({
             image: req.body.image,
             name: req.body.name,
+            purchaseUrl: req.body.purchaseUrl,
             regularPrice: req.body.regularPrice,
             currentPrice: req.body.currentPrice,
             rating: req.body.rating,

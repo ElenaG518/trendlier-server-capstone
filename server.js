@@ -101,7 +101,7 @@ let getFromBestBuy = function (product) {
     let emitter = new events.EventEmitter();
     let options = {
         host: 'api.bestbuy.com',
-        path: '/beta/products/trendingViewed(categoryId='+product+')?apiKey=69FfxSAlHfGvJuWIFqEYNdze',
+        path: '/beta/products/mostViewed(categoryId='+product+')?apiKey=69FfxSAlHfGvJuWIFqEYNdze',
         method: 'GET',
         headers: {
             'Authorization': "69FfxSAlHfGvJuWIFqEYNdze",
@@ -116,7 +116,6 @@ let getFromBestBuy = function (product) {
         res.on('data', function (chunk) {
             body += chunk;
             let jsonFormattedResults = JSON.parse(body);
-            // console.log("jsonFormated", jsonFormattedResults);
             emitter.emit('end', jsonFormattedResults);
         });
 

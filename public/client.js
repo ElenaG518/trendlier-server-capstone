@@ -160,6 +160,24 @@ $('.login-form').submit(function(event) {
     };
 });
 
+// TOP NAVIGATION TRIGGERS
+$('#new-category').click(event=> {
+    event.preventDefault();
+    console.log("new-category");
+    const username = $('#loggedInUserName').val();
+    $('.back-img').removeClass('hidden');
+    $('.search').removeClass('hidden');
+    if (!$('.results').hasClass('hidden')) {
+        $('.results').addClass('hidden');
+    } else if (!$('.single-item').hasClass('hidden')) {
+        $('.single-item').addClass('hidden');
+    } else if (!$('.wish-list').hasClass('hidden')) {
+        $('.wish-list').addClass('hidden');
+    } else if (!$('.edit-item').hasClass('hidden')) {
+        $('.edit-item').addClass('hidden');
+    };
+});
+
 // CALL EXTERNAL API
 
 $('.category-name').on('change', event => {
@@ -201,12 +219,14 @@ function displayProducts(products) {
     $('.back-img').addClass('hidden');
     productList = products.results;
     console.log("productList", productList);
-
+    
     const long = productList.length;
 
     const productString = [];
     for (let x=0; x<long; x++) {
-        
+        if (productList[x].images.standard==null) {
+            productList[x].images.standard='./images/no-image.png'
+        }
       productString.push(
           `<article>
           <div class="picture">
@@ -296,6 +316,7 @@ function addWishListItem(item) {
     console.log("addWishListItem", item);
     const image = item.images.standard;
     const name = item.names.title;
+    const purchaseUrl = item.links.product;
     const regularPrice = item.prices.regular;
     const currentPrice = item.prices.current;
     const rating = item.customerReviews.averageScore;
@@ -307,6 +328,7 @@ function addWishListItem(item) {
     const wishlistObject = {
         image: image,
         name: name,
+        purchaseUrl: purchaseUrl,
         regularPrice: regularPrice,
         currentPrice: currentPrice,
         rating: rating,
@@ -327,7 +349,7 @@ function addWishListItem(item) {
         //if call is successfull
         .done(function(result) {
             console.log("result", result);
-            getWishList(result);
+            getWishList(result.loggedInUserName);
         })
         // if the call is failing
         .fail(function(jqXHR, error, errorThrown) {
@@ -338,10 +360,57 @@ function addWishListItem(item) {
         });
 }
 
-function getWishList(items) {
-    console.log("getWishList", items);
-    $('.wish-list').removeClass('hidden');
-
-    // const wishlist = 
+// make API call to database for products and send results to callback
+// function to be displayed to client
+function getWishList(username) {
+    console.log("getWishList function ran")
+    if ((username == "") || (username == undefined) || (username == null)) {
+        username = $('#loggedInUserName').val();
+    }
+    console.log(username);
+    //make the api call using the payload above
+    $.ajax({
+            type: 'GET',
+            url: `/products/${username}`,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        //if call is successfull
+        .done(function(result) {
+            console.log(result);
+            displayWishlist(result);
+        })
+        // if the call is failing
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
 }
 
+function displayWishlist(item) {
+    console.log("displayWishlist", item);
+    const wishlistStringArray =[`<h2>Wish List</h2>`];
+    $.each(item.products, function (itemkey, itemvalue) {
+        wishlistStringArray.push (
+            `<article>
+            <div class="picture">
+                <img src="${itemvalue.image}" alt="${itemvalue.name}" />
+            </div>
+            <h3>${itemvalue.name}</h3>
+            <div class="item-description">
+                <p><span class="tag">Regular Price:  </span>${itemvalue.regularPrice}</p>
+                <p><span class="tag">Current Price:  </span>${itemvalue.currentPrice}</p>
+                <p><span class="tag">Average Rating:  </span>${itemvalue.rating}</p>
+                <p><span class="tag">Number of Reviews:   </span>${itemvalue.reviewsCount}</p>
+                <p><span class="tag">Description:  </span> ${itemvalue.description}</p>
+                <p class="note"><span class="tag">Note:  </span>${itemvalue.notes}</p>
+            </div>
+            <a href="${itemvalue.purchaseUrl}" target="_blank">purchase</a>
+            <button class="edit-button">edit note</button>
+        </article>`
+        )
+    });
+    console.log("wishlistStringArray", wishlistStringArray);
+    $('.wish-list').removeClass('hidden').html(wishlistStringArray);
+}
