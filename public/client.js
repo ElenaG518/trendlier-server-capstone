@@ -424,7 +424,7 @@ function displayWishlist(item) {
     const wishlistStringArray =[`<h2>Wish List</h2>`];
     
     if (item.products.length==0) {
-        wishlistStringArray.push(`<p>Your wishlist is empty.</p>`);
+        wishlistStringArray.push(`<p class="empty">Your wishlist is empty.</p>`);
     };
     
     $.each(item.products, function (itemkey, itemvalue) {
