@@ -444,6 +444,7 @@ function displayWishlist(item) {
             </div>
             <a href="${itemvalue.purchaseUrl}" target="_blank">purchase</a>
             <button class="edit-button">edit note</button>
+            <button class="delete-button">delete item</button>
         </article>`
         )
     });
