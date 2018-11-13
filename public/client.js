@@ -161,6 +161,8 @@ $('.login-form').submit(function(event) {
 });
 
 // TOP NAVIGATION TRIGGERS
+
+// new category trigger
 $('#new-category').click(event=> {
     event.preventDefault();
     console.log("new-category");
@@ -178,13 +180,42 @@ $('#new-category').click(event=> {
     };
 });
 
+// wishlist trigger
+$('#wishlist').click(event => {
+    event.preventDefault();
+    console.log("wishlist");
+    const username = $('#loggedInUserName').val();
+    if (!$('.back-img').hasClass('hidden')) {
+        $('.back-img').addClass('hidden');
+    } else if (!$('.results').hasClass('hidden')) {
+        $('.results').addClass('hidden');
+    } else if (!$('.single-item').hasClass('hidden')) {
+        $('.single-item').addClass('hidden');
+    } else if (!$('.search').hasClass('hidden')) {
+        $('.search').addClass('hidden');
+    } else if (!$('.edit-item').hasClass('hidden')) {
+        $('.edit-item').addClass('hidden');
+    };
+    getWishList(username);
+});
+
+// logout trigger
+$('#logout').click(event => {
+    console.log("logout anchor clicked");
+    event.preventDefault();
+    $('#loggedInUserName').val("");
+    location.reload();
+});
+
+
 // CALL EXTERNAL API
 
 $('.category-name').on('change', event => {
     event.preventDefault();
     console.log("js-search-form ran");
     // capture values for category
-    const category = $(event.currentTarget).val();
+    let category = $(event.currentTarget).val();
+
     // const category = $('.category-name').val();
     // const username = $('#loggedInUserName').val();
     console.log(category);
