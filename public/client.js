@@ -224,7 +224,7 @@ function displayProducts(products) {
       </article>`
       )
     };
-    console.log("productString", productString);
+    // console.log("productString", productString);
     $('.flex').html(productString);
     $('.results').removeClass('hidden');
 }
@@ -266,11 +266,82 @@ function displaySingleItem(index) {
                 <textarea id="notes" rows="15" cols="40"></textarea>
             </fieldset>
         </form>
-        <a href="#" target="_blank">add to wish list</a>
+        <button class="wishlist-button" index="${index}">add to wish list</button>
         <a href="${singleItem.links.web}" target="_blank">purchase</a>
-        <a href="" target="_blank">back to list</a>
+        <button class="results-list-button">back to list</button>
     </article>`
     ;
     
     $('.single-item').removeClass('hidden').html(itemString);
 }
+
+// WISHLIST API CALLS
+
+// trigger listener to add wishlist item
+$('.single-item').on('click', '.wishlist-button', event => {
+    console.log("wishlist-button clicked");
+    const itemIndex = $(event.currentTarget).attr('index');
+    console.log("itemIndex", itemIndex);
+    const note = $('.single-item').find('#notes').val();
+    console.log("note", note);
+    const wishListItem = productList[itemIndex];
+    wishListItem.note = note;
+    console.log(wishListItem);
+    $('.single-item').addClass('hidden');
+    addWishListItem(wishListItem);
+});
+
+// CREATE products API call
+function addWishListItem(item) {
+    console.log("addWishListItem", item);
+    const image = item.images.standard;
+    const name = item.names.title;
+    const regularPrice = item.prices.regular;
+    const currentPrice = item.prices.current;
+    const rating = item.customerReviews.averageScore;
+    const reviewsCount = item.customerReviews.count;
+    const description = item.descriptions.short;
+    const notes = item.note;
+    const loggedInUserName = $('#loggedInUserName').val();
+    //create the payload object (what data we send to the api call)
+    const wishlistObject = {
+        image: image,
+        name: name,
+        regularPrice: regularPrice,
+        currentPrice: currentPrice,
+        rating: rating,
+        reviewsCount: reviewsCount,
+        description: description,
+        notes: notes,
+        loggedInUserName: loggedInUserName
+    };
+    console.log(wishlistObject);
+    // make the api call using the payload above
+    $.ajax({
+            type: 'POST',
+            url: '/products/create',
+            dataType: 'json',
+            data: JSON.stringify(wishlistObject),
+            contentType: 'application/json'
+        })
+        //if call is successfull
+        .done(function(result) {
+            console.log("result", result);
+            getWishList(result);
+        })
+        // if the call is failing
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            alert('wishlist item failed to create');
+        });
+}
+
+function getWishList(items) {
+    console.log("getWishList", items);
+    $('.wish-list').removeClass('hidden');
+
+    // const wishlist = 
+}
+

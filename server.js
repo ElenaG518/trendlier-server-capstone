@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config();
 const { User } = require('./users/models');
-const { Journey, Image } = require('./journeys/models');
+const { Product } = require('./products/models');
 
 const unirest = require('unirest');
 const events = require('events');
@@ -21,14 +21,14 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 
 const { router: usersRouter } = require('./users');
-const { router: journeysRouter } = require('./journeys');
+const { router: productsRouter } = require('./products');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/users/', usersRouter);
 app.use('/auth/', authRouter);
-app.use('/journeys/', journeysRouter);
+app.use('/products/', productsRouter);
 
 
 const { PORT, DATABASE_URL } = require('./config');
