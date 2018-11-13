@@ -347,7 +347,7 @@ function addWishListItem(item) {
     console.log("addWishListItem", item);
     const image = item.images.standard;
     const name = item.names.title;
-    const purchaseUrl = item.links.product;
+    const purchaseUrl = item.links.web;
     const regularPrice = item.prices.regular;
     const currentPrice = item.prices.current;
     const rating = item.customerReviews.averageScore;
@@ -408,7 +408,7 @@ function getWishList(username) {
         })
         //if call is successfull
         .done(function(result) {
-            console.log(result);
+            console.log("result", result);
             displayWishlist(result);
         })
         // if the call is failing
@@ -422,6 +422,11 @@ function getWishList(username) {
 function displayWishlist(item) {
     console.log("displayWishlist", item);
     const wishlistStringArray =[`<h2>Wish List</h2>`];
+    
+    if (item.products.length==0) {
+        wishlistStringArray.push(`<p>Your wishlist is empty.</p>`);
+    };
+    
     $.each(item.products, function (itemkey, itemvalue) {
         wishlistStringArray.push (
             `<article>

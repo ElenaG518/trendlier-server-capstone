@@ -15,10 +15,11 @@ router.get('/:username', (req, res) => {
         .sort({ created: 1 })
         // if successful, send back journeys
         .then(products => {
-            // if (journey.loggedInUserName == req.params.user)
-            res.json({
+            // if (products.loggedInUserName == req.params.user) {
+                res.json({
                 products: products.map(product => product.serialize())
             });
+        // };
         })
         // send error if call was not successful
         .catch(err => {
