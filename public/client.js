@@ -300,11 +300,12 @@ function displaySingleItem(index) {
     const itemString= 
         `<h2>Item Details </h2>  
         <article class="single">
+        
         <div class="picture">
         <img src="${singleItem.images.standard}" alt="${singleItem.names.title}" />
         </div>
         <h3>${singleItem.names.title}</h3>
-        <div class="single-description">
+        <div class="description">
             <p><span class="tag">Regular Price:  </span>${singleItem.prices.regular}</p>
             <p><span class="tag">Current Price:  </span> ${singleItem.prices.current}</p>
             <p><span class="tag">Average Rating:  </span>${singleItem.customerReviews.averageScore}</p>
@@ -317,9 +318,17 @@ function displaySingleItem(index) {
                 <textarea id="notes" rows="15" cols="40"></textarea>
             </fieldset>
         </form>
-        <button class="wishlist-button" index="${index}">add to wish list</button>
-        <a href="${singleItem.links.web}" target="_blank">purchase</a>
-        <button class="results-list-button">back to list</button>
+        <ul>
+            <a href="#" class="wishlist-button" index="${index}">
+                <li>add to wishlist</li>
+            </a>
+            <a href="${singleItem.links.web}" target="_blank" class="purchase">
+                <li>purchase</li>
+            </a>
+            <a href="#" class="results-list-button">
+                <li>back to list</li>
+            </a>
+        </ul>
     </article>`
     ;
     
@@ -391,6 +400,8 @@ function addWishListItem(item) {
         });
 }
 
+// // READ products API call
+
 // make API call to database for products and send results to callback
 // function to be displayed to client
 function getWishList(username) {
@@ -430,11 +441,11 @@ function displayWishlist(item) {
     $.each(item.products, function (itemkey, itemvalue) {
         wishlistStringArray.push (
             `<article>
-            <div class="picture">
+                <div class="picture">
                 <img src="${itemvalue.image}" alt="${itemvalue.name}" />
             </div>
             <h3>${itemvalue.name}</h3>
-            <div class="item-description">
+            <div class="description">
                 <p><span class="tag">Regular Price:  </span>${itemvalue.regularPrice}</p>
                 <p><span class="tag">Current Price:  </span>${itemvalue.currentPrice}</p>
                 <p><span class="tag">Average Rating:  </span>${itemvalue.rating}</p>
@@ -442,12 +453,181 @@ function displayWishlist(item) {
                 <p><span class="tag">Description:  </span> ${itemvalue.description}</p>
                 <p class="note"><span class="tag">Note:  </span>${itemvalue.notes}</p>
             </div>
-            <a href="${itemvalue.purchaseUrl}" target="_blank">purchase</a>
-            <button class="edit-button">edit note</button>
-            <button class="delete-button">delete item</button>
-        </article>`
+            
+            <ul>
+            <a href="#" class="edit-note" data="${itemvalue.id}"><li>edit note</li></a>
+            <a href="${itemvalue.purchaseUrl}" target="_blank" class="purchase"><li>purchase</li></a>
+            <a href="#" class="delete-item" data="${itemvalue.id}"><li>delete item</li></a>
+            </ul>
+            </article>`
         )
     });
     console.log("wishlistStringArray", wishlistStringArray);
     $('.wish-list').removeClass('hidden').html(wishlistStringArray);
 }
+
+// EDIT WISHLIST ITEM NOTE
+
+// wishlist item edit trigger
+$('.wish-list').on('click', '.edit-note', event => {
+    event.preventDefault();
+    console.log("edit-note clicked");
+    const itemId = $(event.currentTarget).attr('data');
+    console.log("id", itemId);
+    editWishlistItem(itemId);
+});
+
+// API call to PUT
+
+// fetch wishlist item for editing
+function editWishlistItem(itemId) {
+    console.log("editWishlistItem", itemId);
+    $.ajax({
+        type: 'GET',
+        url: `/products/edit/${itemId}`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+    .done(function(result) {
+        console.log("result", result);
+        displayEditNoteForm(result);
+    })
+    // if the call is failing
+    .fail(function(jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+        
+    });
+};
+
+// edit wishlist item form poplulated with current note
+function displayEditNoteForm(data) {
+    console.log("displayEditNoteForm function ran", data);
+    $('.wish-list').addClass('hidden');
+
+    $('.edit-item').removeClass('hidden').html(
+        `<h2>Edit Note</h2>
+        <article>
+        <div class="picture">
+        <img src="${data.image}" alt="${data.name}" />
+    </div>
+    <h3>${data.name}</h3>
+    <div class="description">
+        <p><span class="tag">Regular Price:  </span>${data.regularPrice}</p>
+        <p><span class="tag">Current Price:  </span>${data.currentPrice}</p>
+        <p><span class="tag">Average Rating:  </span>${data.rating}</p>
+        <p><span class="tag">Number of Reviews:   </span>${data.reviewsCount}</p>
+        <p><span class="tag">Description:  </span> ${data.description}</p>
+        
+    </div>
+    
+    <form class="edit-note-form">
+    <fieldset>
+        <label for="edit-note"><span class="tag">Note:</span> </label>
+        <textarea id="edit-note" rows="15" cols="40" data="${data._id}">${data.notes}</textarea>
+    </fieldset>
+    <button role='button' type='submit' class='note-edit-btn'>Submit</button>
+    <button role='button' type='cancel' >Cancel</button>
+    </form>
+
+   </article>`
+    );
+};
+
+// listener for form to edit journey
+$('.edit-item').on('submit', '.edit-note-form', function(event) {
+    event.preventDefault();
+    console.log("note-edit-btn has been pressed");
+    const notes = $('#edit-note').val();
+    const id = $('#edit-note').attr('data');
+    console.log("here", notes, id);
+
+    // create paylode object
+    const editNoteObject = {
+        notes: notes,
+        id: id
+    };
+    console.log(editNoteObject);
+    //make the api call using the payload above
+    $.ajax({
+            type: 'PUT',
+            url: `/products/update/${id}`,
+            dataType: 'json',
+            data: JSON.stringify(editNoteObject),
+            contentType: 'application/json'
+        })
+        // if the call is successful
+        .done(function(result) {
+            const username = $('#loggedInUserName').val();
+            console.log(username);
+            $('.edit-item').addClass('hidden');
+            getWishList(username);
+        })
+        // if the call is failing
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+
+        });
+});
+
+
+// DELETE wishlist API CALL
+
+
+// delete wishlist item listener
+
+// wishlist item edit trigger
+$('.wish-list').on('click', '.delete-item', event => {
+    event.preventDefault();
+    console.log("delete-item clicked");
+    const itemId = $(event.currentTarget).attr('data');
+    console.log("id", itemId);
+    verifyDeletion(itemId);
+});
+
+
+function verifyDeletion(id) {
+    let decision = confirm("Are you sure you want to delete this journey?");
+    if (decision == true) {
+        console.log("you pressed true");
+        deleteWishlistItem(id);
+        $('.album').empty();
+    } else {
+        console.log("You pressed Cancel!");
+    }
+}
+
+// delete journey API call
+function deleteWishlistItem(id) {
+    console.log("deleteWishlistItem", id);
+    //make the api call to delete specific item
+    $.ajax({
+            type: 'DELETE',
+            url: `/products/${id}`,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        // if the call is successful
+        .done(function(message) {
+            const username = $('#loggedInUserName').val();
+            console.log(username);
+            getWishList(username);
+        })
+        // if the call is failing
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            
+        });
+}
+
+
+
+
+
+
+

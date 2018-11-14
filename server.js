@@ -118,8 +118,8 @@ let getFromBestBuy = function (product) {
             let jsonFormattedResults = JSON.parse(body);
             emitter.emit('end', jsonFormattedResults);
         });
-
-    }).on('error', function (e) {
+    })
+    .on('error', function (e) {
 
         emitter.emit('error', e);
     });

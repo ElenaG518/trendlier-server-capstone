@@ -92,7 +92,7 @@ router.post('/create', jsonParser, (req, res) => {
 
 });
 
-// response to handle user request to edit journey
+// response to handle user request to edit wishlist item note
 router.put('/update/:id', jsonParser, function(req, res) {
     console.log("call to put");
     console.log(req.params.id);
@@ -106,17 +106,18 @@ router.put('/update/:id', jsonParser, function(req, res) {
         return res.status(400).json({ message: message });
     }
     // variables that are updatable
+    
     const toUpdate = {};
-    const updateableFields = ['image', 'name', 'regularPrice', 'currentPrice', 'rating', 'reviewsCount', 'description', 'notes', 'loggedInUserName'];
-    updateableFields.forEach(field => {
-        if (field in req.body) {
-            toUpdate[field] = req.body[field];
-        }
-    });
+    console.log("notes", req.body);
+    if ('notes' in req.body) {
+                    toUpdate.notes = req.body.notes;
+                    console.log("toUpdate", toUpdate.notes);
+        };
+   
     // update information
     Product
         .findByIdAndUpdate(req.params.id, { $set: toUpdate }, { new: true })
-        .then(product => res.status(204).json({ message: 'success' }).end())
+        .then(() => res.status(204).json({ message: 'success' }).end())
         .catch(err => res.status(500).json({ message: 'couldn\'t update wishlist item' }));
 });
 
@@ -125,7 +126,7 @@ router.delete('/:id', (req, res) => {
     Product
         .findByIdAndRemove(req.params.id)
         .then(() => {
-            console.log(`Deleted blog post with id \`${req.params.id}\``);
+            console.log(`Deleted wishlist item with id \`${req.params.id}\``);
             res.status(204).end();
         })
         .catch(err => res.status(500).json({ message: 'Internal server error' }));

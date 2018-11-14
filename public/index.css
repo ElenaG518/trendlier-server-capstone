@@ -46,6 +46,12 @@
         margin-right: 10px;
     }
     
+    main {
+        max-width: 1400px;
+        margin: 0 auto;
+        background-color: white;
+    }
+    
     .content {
         width: 80%;
         margin: 0 auto;
@@ -95,7 +101,6 @@
     .intro button {
         display: inline;
         margin: 75px 20px;
-        /* width: 60%; */
         font-size: 1em;
         text-decoration: none;
         border: 1px solid silver;
@@ -107,7 +112,6 @@
     }
     
     .intro button:hover {
-        /* background-color: navy; */
         box-shadow: 2px 2px darkgray;
         color: lightgrey;
         font-size: 1.1em;
@@ -173,10 +177,10 @@
     }
     
     form button:hover {
-        background-color: navy;
+        /* background-color: navy; */
         box-shadow: 2px 2px darkgray;
         color: lightgrey;
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     
     a {
@@ -219,20 +223,6 @@
         margin: 100px auto 25px;
     }
     
-    main {
-        max-width: 1400px;
-        margin: 0 auto;
-        background-color: white;
-    }
-    
-    main ul {
-        text-align: center;
-    }
-    
-    main ul li {
-        width: 30%;
-    }
-    
     .flex {
         display: flex;
         flex-flow: row wrap;
@@ -245,19 +235,15 @@
         padding: 25px;
         margin: 25px auto;
         width: 50%;
-    }
-    
-    .single {
+        position: relative;
         display: block;
-        max-width: 680px;
-        margin: auto;
     }
     
-    .single-description p {
+    .description p {
         padding: 0;
     }
     
-    .item-description {
+    .description {
         line-height: 1.5em;
         width: 80%;
         margin: auto;
@@ -272,6 +258,7 @@
         text-transform: uppercase;
         font-weight: 900;
         line-height: 1.5em;
+        text-align: center;
     }
     
     .picture {
@@ -297,11 +284,64 @@
         z-index: 1;
     }
     
-    .item,
-    .wishlist-button,
-    .results-list-button,
-    .edit-button,
-    .delete-button,
+    .item-menu {
+        width: 100%;
+        /* background: #ffffff; */
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .hamburger {
+        background: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 35px;
+        padding: 5px 15px 0px 15px;
+        color: #999;
+        border: 0;
+        font-size: 1.4em;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        z-index: 10000000000000;
+    }
+    
+    .cross {
+        background: none;
+        position: absolute;
+        top: 0px;
+        right: 0;
+        padding: 7px 15px 0px 15px;
+        color: #999;
+        border: 0;
+        font-size: 3em;
+        /* line-height: 35px; */
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        z-index: 10000000000000;
+    }
+    
+    .menu ul {
+        font-size: 0.8em;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        list-style-image: none;
+        text-align: center;
+    }
+    
+    .menu li {
+        display: block;
+        padding: 15px 0;
+        border-bottom: #dddddd 1px solid;
+        width: 100%;
+    }
+    
+    article button,
     article a {
         font-family: 'Chakra Petch', sans-serif;
         font-size: 80%;
@@ -310,15 +350,19 @@
         background: #fff;
         color: darkolivegreen;
         border: 1px solid lightgray;
-        margin: 10px auto 0;
+        margin: 0 auto;
         line-height: 1.4em
     }
     
-    .item:hover,
-    .wishlist-button:hover,
-    .results-list-button:hover,
-    .edit-button:hover,
-    .delete-button:hover,
+    article button {
+        margin-top: 20px;
+    }
+    
+    button:nth-child(3) {
+        margin-top: 0;
+    }
+    
+    article button:hover,
     article a:hover {
         background-color: #fff;
         color: rgb(0, 0, 0);
@@ -371,11 +415,10 @@
     /* Small screens */
     
     @media all and (max-width: 620px) {
-        /* .intro, */
-        .back-img,
+        /* .back-img,
         .transparent {
             height: 180vh;
-        }
+        } */
         header h1 {
             padding-top: 50px;
         }
@@ -394,9 +437,6 @@
         }
         main nav li {
             width: 100%;
-        }
-        .item-description {
-            font-size: 1;
         }
         .picture {
             width: 100%;
@@ -431,13 +471,14 @@
         .links li a {
             padding: 2px;
         }
+        .description {
+            width: 95%;
+            margin: auto;
+        }
     }
     
     @media all and (max-width: 400px) {
-        .item-description {
-            width: 95%;
-        }
-        .item-description p:not(.note) {
+        .description p:not(.note) {
             padding: 0 0 5px 0;
         }
         p,
