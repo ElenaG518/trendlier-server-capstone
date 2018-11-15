@@ -1,15 +1,16 @@
 'use strict';
 require('dotenv').config();
-const { User } = require('./users/models');
-const { Product } = require('./products/models');
+const cors = require('cors');
+const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
+
 
 const unirest = require('unirest');
 const events = require('events');
 const https = require('https');
-const http = require('http');
+// const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+
 
 const express = require('express');
 const app = express();
@@ -31,10 +32,14 @@ app.use('/auth/', authRouter);
 app.use('/products/', productsRouter);
 
 
-const { PORT, DATABASE_URL } = require('./config');
+app.use(
+    cors({
+        origin: CLIENT_ORIGIN
+    })
+);
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 app.use(express.static('public'));
 
 

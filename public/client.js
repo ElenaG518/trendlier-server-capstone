@@ -215,29 +215,32 @@ $('.category-name').on('change', event => {
     console.log("js-search-form ran");
     // capture values for category
     let category = $(event.currentTarget).val();
-
+    if (category =="Category") {
+        alert("Please select a valid category")
+    };
     // const category = $('.category-name').val();
     // const username = $('#loggedInUserName').val();
     console.log(category);
-    
-    $.ajax({
-        type: 'GET',
-        url: `/bestbuy/${category}`,
-        dataType: 'json',
-        contentType: 'application/json'
-    })
-    //if call is successfull
-    .done(function(result) {
-        console.log(result);
-        displayProducts(result);
-    })
-    // if the call is failing
-    .fail(function(jqXHR, error, errorThrown) {
-        console.log(jqXHR);
-        console.log(error);
-        console.log(errorThrown);
-        
-    });
+    if (category !="Category") {
+        $.ajax({
+            type: 'GET',
+            url: `/bestbuy/${category}`,
+            dataType: 'json',
+            contentType: 'application/json'
+        })
+        //if call is successfull
+        .done(function(result) {
+            console.log(result);
+            displayProducts(result);
+        })
+        // if the call is failing
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            
+        });
+    }
 })
 
 // DISPLAY RESULTS OF SUCCESSFUL EXTERNAL API CALL
