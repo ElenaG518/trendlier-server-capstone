@@ -1,42 +1,75 @@
 'use strict';
 require('dotenv').config();
-const cors = require('cors');
-const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const passport = require('passport');
 
 const unirest = require('unirest');
 const events = require('events');
 const https = require('https');
-// const http = require('http');
+const http = require('http');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const cors = require('cors');
 
-
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
-
-const passport = require('passport');
-
-const jwtAuth = passport.authenticate('jwt', { session: false });
-
-
+// Here we use destructuring assignment with renaming so the two variables
+// called router (from ./users and ./auth) have different names
+// For example:
+// const actorSurnames = { james: "Stewart", robert: "De Niro" };
+// const { james: jimmy, robert: bobby } = actorSurnames;
+// console.log(jimmy); // Stewart - the variable name is jimmy, not james
+// console.log(bobby); // De Niro - the variable name is bobby, not robert
 const { router: usersRouter } = require('./users');
-const { router: productsRouter } = require('./products');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+const { router: productsRouter } = require('./products');
 
-app.use('/users/', usersRouter);
-app.use('/auth/', authRouter);
-app.use('/products/', productsRouter);
+mongoose.Promise = global.Promise;
 
+const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
+
+const app = express();
+
+// Logging
+app.use(morgan('common'));
+
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
 
 app.use(
     cors({
         origin: CLIENT_ORIGIN
     })
 );
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+app.use('/users/', usersRouter);
+app.use('/auth/', authRouter);
+app.use('/products/', productsRouter);
+
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+    if (req.method === "OPTIONS") {
+        return res.send(204);
+    }
+    next();
+});
+
+
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -46,8 +79,18 @@ app.use(express.static('public'));
 app.use(morgan(':remote-addr - :remote-user :date[web] :method :url :response-time '));
 // app.use(morgan(':date :method :url :response-time'));
 
-mongoose.Promise = global.Promise;
 
+// A protected endpoint which needs a valid JWT to access it
+app.get('/api/protected', jwtAuth, (req, res) => {
+    return res.json({
+      data: 'rosebud'
+    });
+  });
+  
+//   app.use('*', (req, res) => {
+//     return res.status(404).json({ message: 'Not Found' });
+//   });
+  
 
 
 
@@ -57,13 +100,17 @@ mongoose.Promise = global.Promise;
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
+
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
+
 let server;
 
 // this function connects to our database, then starts the server
 function runServer(databaseUrl , port = PORT) {
 
     return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, {useNewUrlParser: true }, err => {
+    mongoose.connect(databaseUrl, err => {
             if (err) {
                 return reject(err);
             }

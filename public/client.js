@@ -119,8 +119,7 @@ $('.login-form').submit(function(event) {
 
     const username = $('#login-username').val();
     const password = $('#login-password').val();
-    // console.log(username);
-    // console.log(password);
+    
 
     if (username == "") {
         alert('Please enter username');
@@ -226,7 +225,8 @@ $('.category-name').on('change', event => {
             type: 'GET',
             url: `/bestbuy/${category}`,
             dataType: 'json',
-            contentType: 'application/json'
+            contentType: 'application/json',
+            
         })
         //if call is successfull
         .done(function(result) {
