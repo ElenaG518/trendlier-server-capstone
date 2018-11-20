@@ -69,7 +69,7 @@ router.post('/create', jsonParser, (req, res) => {
             return res.status(400).send(message);
         }
     }
-    // create the journey with the information provided by user
+    // create the product with the information provided by user
     Product
         .create({
             image: req.body.image,
@@ -121,7 +121,7 @@ router.put('/update/:id', jsonParser, function(req, res) {
         .catch(err => res.status(500).json({ message: 'couldn\'t update wishlist item' }));
 });
 
-// find journey by id and delete if from databasae
+// find product by id and delete it from databasae
 router.delete('/:id', (req, res) => {
     Product
         .findByIdAndRemove(req.params.id)
