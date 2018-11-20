@@ -223,7 +223,7 @@ $('.category-name').on('change', event => {
     if (category !="Category") {
         $.ajax({
             type: 'GET',
-            url: `/dashboard/bestbuy/${category}`,
+            url: `/bestbuy/${category}`,
             dataType: 'json',
             contentType: 'application/json',
             

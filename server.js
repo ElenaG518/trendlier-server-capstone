@@ -182,7 +182,7 @@ let getFromBestBuy = function (product) {
 // local API endpoints
 // to test endpoint use: http://localhost:8080/bestbuy/pcmcat209400050001
 
-app.get('/dashboard/bestbuy/:categoryId', function (req, res) {
+app.get('/bestbuy/:categoryId', function (req, res) {
     //external api function call and response
     // params received from client.js js-search-form and sent to getFromBestBuy,
     
