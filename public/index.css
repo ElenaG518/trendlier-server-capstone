@@ -383,10 +383,6 @@
     /* Small screens */
     
     @media all and (max-width: 620px) {
-        /* .back-img,
-        .transparent {
-            height: 180vh;
-        } */
         header h1 {
             padding-top: 50px;
         }
