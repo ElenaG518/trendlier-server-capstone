@@ -135,7 +135,7 @@ $('.login-form').submit(function(event) {
         //make the api call using the payload above
         $.ajax({
                 type: 'POST',
-                url: '/users/login',
+                url: '/auth/login',
                 dataType: 'json',
                 data: JSON.stringify(userObject),
                 contentType: 'application/json'
