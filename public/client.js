@@ -119,6 +119,7 @@ $('.login-form').submit(function(event) {
 
     const username = $('#login-username').val();
     const password = $('#login-password').val();
+   
     
 
     if (username == "") {
@@ -142,8 +143,8 @@ $('.login-form').submit(function(event) {
             })
             //if call is successfull
             .done(function(result) {
-                $('#loggedInUserName').val(result.username);
-                console.log(result.username);
+                $('#loggedInUserName').val(username);
+                console.log(result, username);
                 $('.validation').addClass('hidden');
                 $('.top-menu').removeClass('hidden');
                 $('.search').removeClass('hidden');
