@@ -29,6 +29,7 @@ Edit Wishlist Item
 
 ## Working Prototype
 You can access a working prototype of the node app here: https://trendlier-server-capstone.herokuapp.com/ and react app here: 
+https://trendlier-client-capstone.herokuapp.com/
 
 
 
