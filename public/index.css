@@ -15,19 +15,14 @@
     .back-img {
         margin: 0;
         padding: 0;
-        width: 100%;
-        height: 100%;
         background: url("./images/gadget.jpg") no-repeat center center fixed;
-        background-size: cover;
         background-color: #1854a2;
         color: #ffeda4;
-        position: fixed;
     }
     
     .transparent {
         background: #141920c4;
-        height: 100%;
-        width: 100%;
+        overflow: auto;
     }
     
     .top-navigation {
@@ -92,14 +87,18 @@
         padding: 0 50px;
     }
     
-    .intro button {
-        display: inline;
-        margin: 75px 20px;
-        font-size: 1em;
-        text-decoration: none;
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 50px auto 25px;
+    }
+    
+    .button-wrapper button {
+        margin: 0 20px;
+        font-size: 16px;
         border: 1px solid silver;
         border-radius: 5px;
-        padding: 10px 50px;
+        padding: 10px 35px;
         color: #ffeda4;
         background: transparent;
         font-family: 'Chakra Petch', sans-serif;
@@ -107,8 +106,20 @@
     
     .intro button:hover {
         box-shadow: 2px 2px darkgray;
-        color: lightgrey;
-        font-size: 1.1em;
+        color: darkslategray;
+        background-color: skyblue;
+    }
+    
+    #demo {
+        display: inline;
+        color: skyblue;
+        font-size: 15px;
+        /* margin: 0 auto 50px; */
+        text-decoration: none;
+    }
+    
+    #demo:hover {
+        color: darkred;
     }
     
     .login-form,
@@ -177,7 +188,6 @@
     }
     
     form button:hover {
-        /* background-color: navy; */
         box-shadow: 2px 2px darkgray;
         color: lightgrey;
         font-size: 1.1em;
