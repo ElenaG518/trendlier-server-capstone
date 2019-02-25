@@ -31,6 +31,17 @@ $('.login-button').click(event => {
     loginForm();
 });
 
+$('#demo').click(event => {
+    // event.preventDefault();
+    console.log("go to demo");
+
+    const userObject = {
+        username: "user",
+        password: "pass123"
+    };
+    loginUser(userObject);
+});
+
 $('.login-anchor').click(event => {
     event.preventDefault();
     console.log("go to login");
@@ -120,8 +131,6 @@ $('.login-form').submit(function(event) {
     const username = $('#login-username').val();
     const password = $('#login-password').val();
    
-    
-
     if (username == "") {
         alert('Please enter username');
     } else if (password == "") {
@@ -133,12 +142,19 @@ $('.login-form').submit(function(event) {
             password: password
         };
         console.log(userObject);
+        loginUser(userObject);
+    }
+});        
+
+function loginUser(creds) {
+    console.log("loginUser ran with ", creds);
+    $('.intro').addClass('hidden');
         //make the api call using the payload above
         $.ajax({
                 type: 'POST',
                 url: '/auth/login',
                 dataType: 'json',
-                data: JSON.stringify(userObject),
+                data: JSON.stringify(creds),
                 contentType: 'application/json'
             })
             //if call is successfull
@@ -157,8 +173,7 @@ $('.login-form').submit(function(event) {
                 const message = jqXHR.responseJSON.message;
                 alert(message);
             });
-    };
-});
+}
 
 // TOP NAVIGATION TRIGGERS
 

@@ -27,45 +27,55 @@
     
     .top-navigation {
         display: inline-block;
-        background-color: #fff;
+        background: #132066;
+        color: yellow;
         position: fixed;
         width: 100%;
         z-index: 9999;
         top: 0;
-        padding: 10px 0;
+        padding: 5px 0;
         border-bottom: 1px solid lightgray;
     }
     
-    ul {
-        text-align: right;
-        margin-right: 10px;
-    }
-    
     .content {
-        width: 80%;
+        display: flex;
+        justify-content: space-between;
         margin: 0 auto;
         line-height: 1em;
     }
     
-    .links {
-        float: right;
-    }
-    
     .logo {
         font-family: 'Audiowide', cursive;
-        color: darkgrey;
+        color: yellow;
+        padding: 5px 20px;
     }
     
-    .links li,
-    .links li a {
-        display: inline-block;
+    .links {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .links li {
         border: 0;
-        background-color: #fff;
-        color: #838994;
+        margin: auto 10px auto 5px;
+        padding: 5px 0;
+    }
+    
+    .links li a {
+        border: 0;
+        background: #132066;
+        color: yellow;
         font-size: 20px;
         text-decoration: none;
         margin: 0;
-        padding: 7px 0 0 25px;
+    }
+    
+    .links li a:hover {
+        color: lightskyblue;
+    }
+    
+    .intro {
+        margin-bottom: 12%;
     }
     
     header {
@@ -114,7 +124,6 @@
         display: inline;
         color: skyblue;
         font-size: 15px;
-        /* margin: 0 auto 50px; */
         text-decoration: none;
     }
     
@@ -137,6 +146,10 @@
         max-width: 1400px;
         margin: 0 auto;
         background-color: white;
+    }
+    
+    .search {
+        margin: 25% auto;
     }
     
     form {
@@ -202,8 +215,7 @@
     }
     
     a:hover {
-        color: lightgrey;
-        font-size: 1.2em;
+        color: lightskyblue;
     }
     
     form select {
@@ -212,7 +224,6 @@
     }
     
     .js-search-form {
-        padding-top: 20%;
         padding-bottom: 50%;
     }
     
@@ -296,7 +307,6 @@
     
     .item-menu {
         width: 100%;
-        /* background: #ffffff; */
         height: 40px;
         line-height: 40px;
         position: relative;
@@ -345,7 +355,6 @@
         background-color: #fff;
         color: rgb(0, 0, 0);
         cursor: pointer;
-        font-size: 90%;
         text-decoration: none;
         box-shadow: 2px 2px 2px #3c3c3c;
         transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -441,6 +450,10 @@
     }
     
     @media all and (max-width: 460px) {
+        .intro,
+        .search {
+            margin-bottom: 55%;
+        }
         .links li,
         .links li a {
             padding: 2px;
